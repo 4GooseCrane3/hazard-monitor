@@ -1,0 +1,4 @@
+requests
+beautifulsoup4
+praw
+google-api-python-client
