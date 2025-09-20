@@ -52,28 +52,28 @@ def fetch_youtube():
         })
     return videos
 
-NEWS_URL = "https://www.ndma.gov.in/news"
+# NEWS_URL = "https://www.ndma.gov.in/news"
 
-def fetch_news():
-    response = requests.get(NEWS_URL)
-    soup = BeautifulSoup(response.text, "html.parser")
-    news = []
-    for article in soup.find_all("h2", class_="news-title"):
-        title = article.text.strip()
-        link = article.find("a")["href"]
-        news.append({
-            "source": "NDMA News",
-            "title": title,
-            "url": link
-        })
-    return news
+# def fetch_news():
+#     response = requests.get(NEWS_URL)
+#     soup = BeautifulSoup(response.text, "html.parser")
+#     news = []
+#     for article in soup.find_all("h2", class_="news-title"):
+#         title = article.text.strip()
+#         link = article.find("a")["href"]
+#         news.append({
+#             "source": "NDMA News",
+#             "title": title,
+#             "url": link
+#         })
+#     return news
 
 def main():
     all_posts = []
     all_posts.extend(fetch_twitter())
     all_posts.extend(fetch_reddit())
     all_posts.extend(fetch_youtube())
-    all_posts.extend(fetch_news())
+    # all_posts.extend(fetch_news())
     with open("hazard_data.json", "w", encoding="utf-8") as f:
         json.dump(all_posts, f, ensure_ascii=False, indent=4)
     print("Data fetched and saved to hazard_data.json\n")
